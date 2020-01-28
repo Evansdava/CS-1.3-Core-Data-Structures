@@ -14,7 +14,8 @@ def decode(digits, base):
     """Decode given digits in given base to number in base 10.
     digits: str -- string representation of number (in given base)
     base: int -- base of given number
-    return: int -- integer representation of number (in base 10)"""
+    return: int -- integer representation of number (in base 10)
+    """
     # Handle up to base 36 [0-9a-z]
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
     # TODO: Decode digits from binary (base 2)
@@ -23,13 +24,31 @@ def decode(digits, base):
     # ...
     # TODO: Decode digits from any base (2 up to 36)
     # ...
+    printable = string.digits + string.ascii_lowercase
+    """
+    Check the length of the string
+    Loop from right to left
+        For each digit, multiply it by the power of the base
+        Add the results together
+    Return total
+    """
+    total = 0
+    length = len(digits)
+    i = 1
+    while i <= length:
+        dig = digits[-i]
+        num = printable.find(dig)
+        total += num * (base ** (i - 1))
+        i += 1
+    return total
 
 
 def encode(number, base):
     """Encode given number in base 10 to digits in given base.
     number: int -- integer representation of number (in base 10)
     base: int -- base to convert to
-    return: str -- string representation of number (in given base)"""
+    return: str -- string representation of number (in given base)
+    """
     # Handle up to base 36 [0-9a-z]
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
     # Handle unsigned numbers only for now
@@ -40,14 +59,17 @@ def encode(number, base):
     # ...
     # TODO: Encode number in any base (2 up to 36)
     # ...
-
+    """
+    pass
+    """
 
 def convert(digits, base1, base2):
     """Convert given digits in base1 to digits in base2.
     digits: str -- string representation of number (in base1)
     base1: int -- base of given number
     base2: int -- base to convert to
-    return: str -- string representation of number (in base2)"""
+    return: str -- string representation of number (in base2)
+    """
     # Handle up to base 36 [0-9a-z]
     assert 2 <= base1 <= 36, 'base1 is out of range: {}'.format(base1)
     assert 2 <= base2 <= 36, 'base2 is out of range: {}'.format(base2)
@@ -71,10 +93,12 @@ def main():
         base2 = int(args[2])
         # Convert given digits between bases
         result = convert(digits, base1, base2)
-        print('{} in base {} is {} in base {}'.format(digits, base1, result, base2))
+        print('{} in base {} is {} in base {}'.format(digits, base1,
+                                                      result, base2))
     else:
-        print('Usage: {} digits base1 base2'.format(sys.argv[0]))
-        print('Converts digits from base1 to base2')
+        # print('Usage: {} digits base1 base2'.format(sys.argv[0]))
+        # print('Converts digits from base1 to base2')
+        print(decode("9a", 16))
 
 
 if __name__ == '__main__':
