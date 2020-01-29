@@ -47,24 +47,16 @@ def encode(number, base):
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
     # Handle unsigned numbers only for now
     assert number >= 0, 'number is negative: {}'.format(number)
-    # TODO: Encode number in binary (base 2)
-    # ...
-    # TODO: Encode number in hexadecimal (base 16)
-    # ...
-    # TODO: Encode number in any base (2 up to 36)
-    # ...
     printable = string.digits + string.ascii_lowercase
     """
     While the number can be divided by the base:
         Divide the number by the base
-        Count the number of divisions performed
         Put the remainders in a list
         If that number can be divided by the base, repeat this loop
     The number of iterations of the loop is the number of digits - 1
     For each digit, enter the remainder of the digit before it
     """
     remainders = get_remainders(number, base)
-    print(remainders)
     result = ""
     for rem in reversed(remainders):
         result += printable[rem]
@@ -79,7 +71,6 @@ def get_remainders(number, base, remainders=[]):
         num, mod = divmod(number, base)
         remainders.append(mod)
         remainders = get_remainders(num, base, remainders)
-    print(remainders)
     return remainders
 
 
@@ -93,15 +84,7 @@ def convert(digits, base1, base2):
     # Handle up to base 36 [0-9a-z]
     assert 2 <= base1 <= 36, 'base1 is out of range: {}'.format(base1)
     assert 2 <= base2 <= 36, 'base2 is out of range: {}'.format(base2)
-    # TODO: Convert digits from base 2 to base 16 (and vice versa)
-    # ...
-    # TODO: Convert digits from base 2 to base 10 (and vice versa)
-    # ...
-    # TODO: Convert digits from base 10 to base 16 (and vice versa)
-    # ...
-    # TODO: Convert digits from any base to any base (2 up to 36)
-    # ...
-    printable = string.digits + string.ascii_lowercase
+    return encode(decode(digits, base1), base2)
 
 
 def main():
@@ -117,10 +100,10 @@ def main():
         print('{} in base {} is {} in base {}'.format(digits, base1,
                                                       result, base2))
     else:
-        # print('Usage: {} digits base1 base2'.format(sys.argv[0]))
+        print('Usage: {} digits base1 base2'.format(sys.argv[0]))
         # print('Converts digits from base1 to base2')
         # print(decode("9a", 16))
-        print(encode(939, 16))
+        # print(encode(939, 16))
 
 
 if __name__ == '__main__':
