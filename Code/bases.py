@@ -19,8 +19,8 @@ def decode(digits, base):
     # Handle up to base 36 [0-9a-z]
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
 
-    printable = string.digits + string.ascii_uppercase
-    digits = digits.upper()
+    printable = string.digits + string.ascii_lowercase
+    digits = digits.lower()
     """
     Check the length of the string
     Loop from right to left
@@ -48,7 +48,7 @@ def encode(number, base):
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
     # Handle unsigned numbers only for now
     assert number >= 0, 'number is negative: {}'.format(number)
-    printable = string.digits + string.ascii_uppercase
+    printable = string.digits + string.ascii_lowercase
     """
     While the number can be divided by the base:
         Divide the number by the base
@@ -61,6 +61,7 @@ def encode(number, base):
     result = ""
     for rem in reversed(remainders):
         result += printable[rem]
+    remainders.clear()
     return result
 
 
@@ -93,7 +94,7 @@ def main():
     import sys
     args = sys.argv[1:]  # Ignore script file name
     if len(args) == 3:
-        digits = args[0].upper()
+        digits = args[0].lower()
         base1 = int(args[1])
         base2 = int(args[2])
         # Convert given digits between bases
