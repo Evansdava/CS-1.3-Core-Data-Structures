@@ -18,7 +18,7 @@ class StringsTest(unittest.TestCase):
         assert contains('aaa', 'a') is True  # multiple occurrences
         assert contains('aaa', 'aa') is True  # overlapping pattern
         # TODO: Write more positive test cases with assert is True statements
-        # ...
+        assert contains('', '') is True
 
     def test_contains_with_non_matching_patterns(self):
         # Negative test cases (counterexamples) with non-matching patterns
@@ -27,7 +27,7 @@ class StringsTest(unittest.TestCase):
         assert contains('abc', 'az') is False  # first letter, but not last
         assert contains('abc', 'abz') is False  # first 2 letters, but not last
         # TODO: Write more negative test cases with assert is False statements
-        # ...
+        assert contains('', 'a') is False
 
     def test_contains_with_complex_patterns(self):
         # Difficult test cases (examples) with complex patterns
@@ -37,7 +37,7 @@ class StringsTest(unittest.TestCase):
         assert contains('bananas', 'nas') is True  # overlapping prefix
         # TODO: Write more test cases that check complex patterns or edge cases
         # You'll need a lot more than this to test your algorithm's robustness
-        # ...
+        assert contains('abababc', 'abc') is True  # Multiple overlapping
 
     def test_find_index_with_matching_patterns(self):
         # Positive test cases (examples) with matching patterns
@@ -51,7 +51,7 @@ class StringsTest(unittest.TestCase):
         assert find_index('aaa', 'a') == 0  # multiple occurrences
         assert find_index('aaa', 'aa') == 0  # overlapping pattern
         # TODO: Write more positive test cases with assert equal int statements
-        # ...
+        assert find_index('', '') == 0
 
     def test_find_index_with_non_matching_patterns(self):
         # Negative test cases (counterexamples) with non-matching patterns
@@ -60,7 +60,7 @@ class StringsTest(unittest.TestCase):
         assert find_index('abc', 'az') is None  # first letter, but not last
         assert find_index('abc', 'abz') is None  # first 2 letters, but not last
         # TODO: Write more negative test cases with assert is None statements
-        # ...
+        assert find_index('', 'a') is None
 
     def test_find_index_with_complex_patterns(self):
         # Difficult test cases (examples) with complex patterns
@@ -76,7 +76,7 @@ class StringsTest(unittest.TestCase):
         assert find_index('abra cadabra', 'adab') == 6  # overlapping prefix
         # TODO: Write more test cases that check complex patterns or edge cases
         # You'll need a lot more than this to test your algorithm's robustness
-        # ...
+        assert find_index('abababc', 'abc') == 4 # multiple overlapping
 
     def test_find_all_indexes_with_matching_patterns(self):
         # Positive test cases (examples) with matching patterns
@@ -90,7 +90,7 @@ class StringsTest(unittest.TestCase):
         assert find_all_indexes('aaa', 'a') == [0, 1, 2]  # multiple occurrences
         assert find_all_indexes('aaa', 'aa') == [0, 1]  # overlapping pattern
         # TODO: Write more positive test cases with assert equal list statements
-        # ...
+        assert find_all_indexes('', '') == [0]
 
     def test_find_all_indexes_with_non_matching_patterns(self):
         # Negative test cases (counterexamples) with non-matching patterns
@@ -99,7 +99,7 @@ class StringsTest(unittest.TestCase):
         assert find_all_indexes('abc', 'az') == []  # first letter, but not last
         assert find_all_indexes('abc', 'abz') == []  # first 2 letters, but not last
         # TODO: Write more negative test cases with assert equal list statements
-        # ...
+        assert find_all_indexes('', 'a') == []
 
     def test_find_all_indexes_with_complex_patterns(self):
         # Difficult test cases (examples) with complex patterns
@@ -115,7 +115,7 @@ class StringsTest(unittest.TestCase):
         assert find_all_indexes('abra cadabra', 'adab') == [6]  # overlapping prefix
         # TODO: Write more test cases that check complex patterns or edge cases
         # You'll need a lot more than this to test your algorithm's robustness
-        # ...
+        assert find_all_indexes('abababc', 'abc') == [4]  # Multiple overlapping
 
 
 if __name__ == '__main__':
