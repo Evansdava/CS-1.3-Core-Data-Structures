@@ -1,6 +1,7 @@
 #!python
 
-import string
+
+# import string
 # Hint: Use these string constants to ignore capitalization and/or punctuation
 # string.ascii_lowercase is 'abcdefghijklmnopqrstuvwxyz'
 # string.ascii_uppercase is 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -13,22 +14,49 @@ def is_palindrome(text):
     # implement is_palindrome_iterative and is_palindrome_recursive below, then
     # change this to call your implementation to verify it passes all tests
     assert isinstance(text, str), 'input is not a string: {}'.format(text)
-    return is_palindrome_iterative(text)
-    # return is_palindrome_recursive(text)
+    # return is_palindrome_iterative(text)
+    return is_palindrome_recursive(text)
 
 
 def is_palindrome_iterative(text):
-    # TODO: implement the is_palindrome function iteratively here
-    pass
     # once implemented, change is_palindrome to call is_palindrome_iterative
     # to verify that your iterative implementation passes all tests
+    if text == "":
+        return True
+    text = text.lower()
+    i, j = 0, len(text) - 1
+    while i < j:
+        while not text[i].isalnum():
+            i += 1
+        while not text[j].isalnum():
+            j -= 1
+        if text[i] != text[j]:
+            return False
+        i += 1
+        j -= 1
+    return True
 
 
 def is_palindrome_recursive(text, left=None, right=None):
-    # TODO: implement the is_palindrome function recursively here
-    pass
     # once implemented, change is_palindrome to call is_palindrome_recursive
     # to verify that your iterative implementation passes all tests
+    if text == "":
+        return True
+    if left is None:
+        left = 0
+        right = len(text) - 1
+
+    while not text[left].isalnum():
+        left += 1
+    while not text[right].isalnum():
+        right -= 1
+
+    if text[left].lower() != text[right].lower():
+        return False
+    elif left >= right:
+        return True
+    else:
+        return is_palindrome_recursive(text, left + 1, right - 1)
 
 
 def main():
