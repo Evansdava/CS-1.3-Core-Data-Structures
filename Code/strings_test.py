@@ -77,6 +77,8 @@ class StringsTest(unittest.TestCase):
         # TODO: Write more test cases that check complex patterns or edge cases
         # You'll need a lot more than this to test your algorithm's robustness
         assert find_index('abababc', 'abc') == 4 # multiple overlapping
+        assert find_index('oooooh', 'oooh') == 2
+        assert find_index('oooooooooh', 'oooh') == 6
 
     def test_find_all_indexes_with_matching_patterns(self):
         # Positive test cases (examples) with matching patterns
