@@ -2,7 +2,7 @@
 
 
 def linear_search(array, item):
-    """return the first index of item in array or None if item is not found"""
+    """Return the first index of item in array or None if item is not found"""
     # implement linear_search_iterative and linear_search_recursive below, then
     # change this to call your implementation to verify it passes all tests
     # return linear_search_iterative(array, item)
@@ -10,6 +10,9 @@ def linear_search(array, item):
 
 
 def linear_search_iterative(array, item):
+    """Best case runtime: O(1) if item is at index 0
+    Worst case: O(n) if item is at last index
+    """
     # loop over all array values until item is found
     for index, value in enumerate(array):
         if item == value:
@@ -18,6 +21,9 @@ def linear_search_iterative(array, item):
 
 
 def linear_search_recursive(array, item, index=0):
+    """Best case runtime: O(1) if item is at index 0
+    Worst case: O(n) if item is at last index
+    """
     # once implemented, change linear_search to call linear_search_recursive
     # to verify that your recursive implementation passes all tests
     if array[index] == item:
@@ -29,7 +35,7 @@ def linear_search_recursive(array, item, index=0):
 
 
 def binary_search(array, item):
-    """return the index of item in sorted array or None if item is not found"""
+    """Return the index of item in sorted array or None if item is not found"""
     # implement binary_search_iterative and binary_search_recursive below, then
     # change this to call your implementation to verify it passes all tests
     return binary_search_iterative(array, item)
@@ -37,6 +43,10 @@ def binary_search(array, item):
 
 
 def binary_search_iterative(array, item):
+    """Best case runtime: O(1) if item is exactly in the middle
+    Worst case: O(Log n) if item takes the maximum number
+               of iterations to reach
+    """
     # once implemented, change binary_search to call binary_search_iterative
     # to verify that your iterative implementation passes all tests
     index = len(array) // 2
@@ -61,6 +71,10 @@ def binary_search_iterative(array, item):
 
 
 def binary_search_recursive(array, item, left=None, right=None):
+    """Best case runtime: O(1) if item is exactly in the middle
+    Worst case: O(Log n) if item takes the maximum number
+                of iterations to reach
+    """
     # once implemented, change binary_search to call binary_search_recursive
     # to verify that your recursive implementation passes all tests
     if left and right:

@@ -4,7 +4,9 @@ from utility import time_it
 
 @time_it
 def contains(text, pattern):
-    """Return a boolean indicating whether pattern occurs in text."""
+    """Return a boolean indicating whether pattern occurs in text.
+    Best case runtime: O(1) if pattern occurs at index 0
+    Worst case: O(n) if pattern is at the end"""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # DRY
@@ -18,6 +20,8 @@ def contains(text, pattern):
 def find_index(text, pattern, index=0, p_letter=0):
     """Return the starting index of the first occurrence of pattern in text,
     or None if not found.
+    Best case runtime: O(1) if pattern occurs at index 0
+    Worst case: O(n) if pattern occurs at the end
     """
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
@@ -40,6 +44,8 @@ def find_index(text, pattern, index=0, p_letter=0):
 def find_all_indexes(text, pattern):
     """Return a list of starting indexes of all occurrences of pattern in text,
     or an empty list if not found.
+    Best case runtime: O(n) if pattern does not appear in text
+    Worst case: 
     """
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
