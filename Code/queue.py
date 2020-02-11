@@ -31,12 +31,14 @@ class LinkedQueue(object):
 
     def enqueue(self, item):
         """Insert the given item at the back of this queue.
-        Running time: O(???) – Why? [TODO]"""
+        Running time: O(1) – appending to a LL is constant time
+        """
         self.list.append(item)
 
     def front(self):
         """Return the item at the front of this queue without removing it,
-        or None if this queue is empty."""
+        or None if this queue is empty.
+        """
         if not self.is_empty():
             return self.list.head.data
         return None
@@ -44,7 +46,8 @@ class LinkedQueue(object):
     def dequeue(self):
         """Remove and return the item at the front of this queue,
         or raise ValueError if this queue is empty.
-        Running time: O(???) – Why? [TODO]"""
+        Running time: O(1) – moving pointers is constant time
+        """
         if self.is_empty():
             raise ValueError("Queue is empty")
         data = self.list.head.data
@@ -80,13 +83,14 @@ class ArrayQueue(object):
 
     def enqueue(self, item):
         """Insert the given item at the back of this queue.
-        Running time: O(???) – Why? [TODO]"""
+        Running time: O(1) – Because it simply appends to the list
+        """
         self.list.append(item)
 
     def front(self):
         """Return the item at the front of this queue without removing it,
-        or None if this queue is empty."""
-        # TODO: Return front item, if any
+        or None if this queue is empty.
+        """
         if not self.is_empty():
             return self.list[0]
         return None
@@ -94,8 +98,8 @@ class ArrayQueue(object):
     def dequeue(self):
         """Remove and return the item at the front of this queue,
         or raise ValueError if this queue is empty.
-        Running time: O(???) – Why? [TODO]"""
-        # TODO: Remove and return front item, if any
+        Running time: O(n) – popping from the start of a list moves indexes
+        """
         if self.is_empty():
             raise ValueError("Queue is empty")
         data = self.list[0]
