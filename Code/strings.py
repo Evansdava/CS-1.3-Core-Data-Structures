@@ -44,8 +44,8 @@ def find_index(text, pattern, index=0, p_letter=0):
 def find_all_indexes(text, pattern):
     """Return a list of starting indexes of all occurrences of pattern in text,
     or an empty list if not found.
-    Best case runtime: O(n) if pattern does not appear in text
-    Worst case: 
+    Best case runtime: O(1) if the text is empty
+    Worst case: O(n) if pattern does not appear in text
     """
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
