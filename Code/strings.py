@@ -6,7 +6,8 @@ from utility import time_it
 def contains(text, pattern):
     """Return a boolean indicating whether pattern occurs in text.
     Best case runtime: O(1) if pattern occurs at index 0
-    Worst case: O(n) if pattern is at the end"""
+    Worst case: O(n) if pattern is at the end
+    """
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # DRY
