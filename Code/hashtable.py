@@ -4,6 +4,7 @@ from linkedlist import LinkedList
 
 
 class HashTable(object):
+    """Class for a hash table based on Linked Lists"""
 
     def __init__(self, init_size=8):
         """Initialize this hash table with the given initial size."""
@@ -161,7 +162,7 @@ class HashTable(object):
             new_size = len(self.buckets) * 2  # Double size
         # Option to reduce size if low load factor
         elif new_size == 0:
-            new_size = len(self.buckets) / 2  # Half size
+            new_size = len(self.buckets) // 2  # Half size
         # Get a list to temporarily hold all current key-value entries
         items = self.items()
         # Create a new list of new_size total empty linked list buckets

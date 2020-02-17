@@ -86,6 +86,20 @@ class HashTableTest(unittest.TestCase):
         assert ht.size == 4
         assert len(ht.buckets) == 8
         assert ht.load_factor() == 0.5
+        ht = HashTable(11)  # Set init_size to 10
+        ht.set('C', 100)  # Give three values
+        ht.set('D', 500)
+        ht.set('M', 1000)
+        assert ht.size == 3
+        ht.delete('C')
+        ht.delete('D')  # Triggers resize
+        assert ht.size == 1
+        assert len(ht.buckets) == 5
+        assert ht.load_factor() == 0.2
+        ht.delete('M')  # Should also trigger resize
+        assert ht.size == 0
+        assert len(ht.buckets) == 2
+        assert ht.load_factor() == 0.0
 
     def test_contains(self):
         ht = HashTable()

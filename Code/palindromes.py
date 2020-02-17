@@ -10,7 +10,8 @@
 
 def is_palindrome(text):
     """A string of characters is a palindrome if it reads the same forwards and
-    backwards, ignoring punctuation, whitespace, and letter casing."""
+    backwards, ignoring punctuation, whitespace, and letter casing.
+    """
     # implement is_palindrome_iterative and is_palindrome_recursive below, then
     # change this to call your implementation to verify it passes all tests
     assert isinstance(text, str), 'input is not a string: {}'.format(text)
