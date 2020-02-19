@@ -28,14 +28,19 @@ def decode(digits, base):
         Add the results together
     Return total
     """
-    total = 0
-    i = 1
-    while i <= len(digits):
-        dig = digits[-i]
-        num = printable.find(dig)
-        total += num * (base ** (i - 1))
+    # total = 0
+    # i = 1
+    # while i <= len(digits):
+    #     dig = digits[-i]
+    #     num = printable.find(dig)
+    #     total += num * (base ** (i - 1))
+    #     i += 1
+    # return total
+    decimal, i = 0, 0
+    for digit in reversed(digits):
+        decimal += printable.find(digit) * pow(base, i)
         i += 1
-    return total
+    return decimal
 
 
 def encode(number, base):
@@ -57,12 +62,23 @@ def encode(number, base):
     The number of iterations of the loop is the number of digits - 1
     For each digit, enter the remainder of the digit before it
     """
-    remainders = get_remainders(number, base)
-    result = ""
-    for rem in reversed(remainders):
-        result += printable[rem]
-    remainders.clear()
-    return result
+    # remainders = get_remainders(number, base)
+    # result = ""
+    # for rem in reversed(remainders):
+    #     result += printable[rem]
+    # remainders.clear()
+    # return result
+    num, survivor = divmod(number, base)
+    survivors = []
+    survivors.append(survivor)
+    while num > 0:
+        num, survivor = divmod(num, base)
+        survivors.append(survivor)
+
+    casual_ties = ""
+    for survivor in reversed(survivors):
+        casual_ties += printable[survivor]
+    return casual_ties
 
 
 def get_remainders(number, base, remainders=[]):

@@ -77,8 +77,7 @@ class HashTable(object):
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
         Best case running time: O(1) if key is in the first location
-        Worst case running time: O(b) if key is not in table, where
-        b = length of the bucket
+        Worst case running time: O(n) if all items are in one bucket
         """
         # Find the bucket the given key belongs in
         index = self._bucket_index(key)
@@ -90,8 +89,7 @@ class HashTable(object):
     def get(self, key):
         """Return the value associated with the given key, or raise KeyError.
         Best case running time: O(1) if value is in the first location
-        Worst case running time: O(b) if key is not in table, where
-        b = length of the bucket
+        Worst case running time: O(n) if all items are in one bucket
         """
         # Find the bucket the given key belongs in
         index = self._bucket_index(key)
@@ -109,8 +107,7 @@ class HashTable(object):
     def set(self, key, value):
         """Insert or update the given key with its associated value.
         Best case running time: O(1) if key is the first one found
-        Worst case running time: O(b) if key is not in table, where
-        b = length of the bucket
+        Worst case running time: O(n) if all items are in one bucket
         """
         # Find the bucket the given key belongs in
         index = self._bucket_index(key)
