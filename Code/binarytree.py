@@ -38,7 +38,16 @@ class BinaryTreeNode(object):
         else:
             right_height = -1
         # Return one more than the greater of the left height and right height
-        return max(left_height + 1, right_height + 1)
+        return max(left_height, right_height) + 1
+
+    def _num_children(self):
+        """Return the number of children this node has"""
+        if self.left and self.right:
+            return 2
+        elif self.left or self.right:
+            return 1
+        else:
+            return 0
 
 
 class BinarySearchTree(object):
@@ -228,6 +237,50 @@ class BinarySearchTree(object):
         # TODO: Use helper methods and break this algorithm down into 3 cases
         # based on how many children the node containing the given item has and
         # implement new helper methods for subtasks of the more complex cases
+        parent = self._find_parent_node_recursive(item, self.root)
+        start = parent if parent is not None else self.root
+        node = self._find_node_recursive(item, start)
+
+        if node is None:
+            raise ValueError("Item not found")
+
+        root = True if node is self.root else False
+
+        children = node._num_children()
+
+        if children == 0:
+            if root:
+                self.root = None
+            elif node.data < parent.data:
+                parent.left = None
+            elif node.data > parent.data:
+                parent.right = None
+
+        elif children == 1:
+            child_node = node.left if node.left else node.right
+            if root:
+                self.root = child_node
+            else:
+                if node.data < parent.data:
+                    parent.left = child_node
+                elif node.data > parent.data:
+                    parent.right = child_node
+
+        else:
+            successor = node.right
+            while successor.left is not None:
+                successor = successor.left
+            self.delete(successor.data)
+            successor.left = node.left
+            successor.right = node.right
+
+            if root:
+                self.root = successor
+            else:
+                if node.data < parent.data:
+                    parent.left = successor
+                elif node.data > parent.data:
+                    parent.right = successor
 
     def items_in_order(self):
         """Return an in-order list of all items in this binary search tree."""
@@ -314,7 +367,7 @@ class BinarySearchTree(object):
         # TODO: Traverse post-order without using recursion (stretch challenge)
 
     def items_level_order(self):
-        """Return a level-order list of all items in this binary search tree."""
+        """Return a level-order list of all items in this binary search tree"""
         items = []
         if not self.is_empty():
             # Traverse tree level-order from root, appending each node's item
