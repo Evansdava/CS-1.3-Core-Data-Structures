@@ -7,7 +7,7 @@ class TreeSet(object):
     def __init__(self, items=None):
         """Initialize a new Set"""
         self.tree = BinarySearchTree(items)
-        self.size = self.tree.size
+        # self.size = self.tree.size
 
     def __repr__(self):
         """Return a string representation of this set"""
@@ -17,6 +17,11 @@ class TreeSet(object):
     def __iter__(self):
         """Allow the set to be iterated over (i.e. in for loops)"""
         return iter([value for value in self.tree.items_level_order()])
+
+    @property
+    def size(self):
+        """Use tree size property"""
+        return self.tree.size
 
     def contains(self, item):
         """Return a boolean indicating whether item is in this set
@@ -31,7 +36,6 @@ class TreeSet(object):
         Worst case: O(n) if tree is poorly balanced
         """
         if not self.contains(item):
-            self.size += 1
             self.tree.insert(item)
 
     def remove(self, item):
@@ -42,7 +46,6 @@ class TreeSet(object):
         if not self.contains(item):
             raise KeyError("Item not found")
         else:
-            self.size -= 1
             self.tree.delete(item)
 
     def union(self, other_set):

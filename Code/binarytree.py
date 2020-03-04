@@ -112,6 +112,8 @@ class BinarySearchTree(object):
             # Increase the tree size
             self.size += 1
             return
+        elif type(self.root.data) != type(item):
+            raise TypeError("Mixed type tree not supported")
         # Find the parent node of where the given item should be inserted
         parent = self._find_parent_node_recursive(item, self.root)
         # Check if the given item should be inserted left of parent node
@@ -161,6 +163,8 @@ class BinarySearchTree(object):
         # Check if starting node exists
         if node is None:
             # Not found (base case)
+            return None
+        if type(node.data) != type(item):
             return None
         # Check if the given item matches the node's data
         elif item == node.data:
@@ -261,12 +265,14 @@ class BinarySearchTree(object):
         children = node._num_children()
 
         if children == 0:
+            self.size -= 1
             if root:
                 self.root = None
             else:
                 self._replace_node(node, parent, None)
 
         elif children == 1:
+            self.size -= 1
             child = node.left if node.left else node.right
             if root:
                 self.root = child
