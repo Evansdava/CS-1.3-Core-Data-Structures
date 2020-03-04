@@ -18,6 +18,10 @@ class TreeSet(object):
         """Allow the set to be iterated over (i.e. in for loops)"""
         return iter([value for value in self.tree.items_level_order()])
 
+    def __eq__(self, other):
+        """Allow sets to be compared to other sets"""
+        return self.tree.items_in_order() == other.tree.items_in_order()
+
     @property
     def size(self):
         """Use tree size property"""
