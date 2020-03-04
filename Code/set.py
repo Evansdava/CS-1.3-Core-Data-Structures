@@ -14,6 +14,10 @@ class TreeSet(object):
         items = ['({!r})'.format(item) for item in self.tree.items_in_order()]
         return ', '.join(items)
 
+    def __iter__(self):
+        """Allow the set to be iterated over (i.e. in for loops)"""
+        return iter([value for value in self.tree.items_level_order()])
+
     def contains(self, item):
         """Return a boolean indicating whether item is in this set"""
         return self.tree.search(item) is not None
@@ -21,6 +25,7 @@ class TreeSet(object):
     def add(self, item):
         """Add the item to the set if not present"""
         if not self.contains(item):
+            self.size += 1
             self.tree.insert(item)
 
     def remove(self, item):
@@ -28,19 +33,20 @@ class TreeSet(object):
         if not self.contains(item):
             raise KeyError("Item not found")
         else:
+            self.size -= 1
             self.tree.delete(item)
 
     def union(self, other_set):
         """Return a new set that is the union of this set and other_set"""
-        new_set = TreeSet(self.tree.items_level_order())
-        for item in other_set.tree.items_in_order():
+        new_set = TreeSet(self)
+        for item in other_set:
             new_set.add(item)
         return new_set
 
     def intersection(self, other_set):
         """Return a new set that is the intersection of this and other_set"""
         new_set = TreeSet()
-        for item in other_set.tree.items_in_order():
+        for item in other_set:
             if self.contains(item):
                 new_set.add(item)
         return new_set
@@ -48,14 +54,14 @@ class TreeSet(object):
     def difference(self, other_set):
         """Return a new set that is the difference of this set and other_set"""
         new_set = TreeSet()
-        for item in other_set.tree.items_in_order():
-            if not self.contains(item):
+        for item in self:
+            if not other_set.contains(item):
                 new_set.add(item)
         return new_set
 
     def is_subset(self, other_set):
         """Return a boolean indicating if other_set is a subset of this"""
-        for item in other_set.tree.items_in_order():
+        for item in other_set:
             if not self.contains(item):
                 return False
 
