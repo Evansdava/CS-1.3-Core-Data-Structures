@@ -1,13 +1,12 @@
 from itertools import permutations
 from binarytree import BinarySearchTree
 from random import shuffle
-from utility import time_it
+import cProfile
 
 
 class JumbleSolver():
     """Class for solving word jumbles"""
 
-    @time_it
     def __init__(self, items):
         """Initializes items for solving"""
         self.tree = self.make_word_tree('/usr/share/dict/words')
@@ -22,7 +21,6 @@ class JumbleSolver():
             result += "\n"
         return result
 
-    @time_it
     def make_word_tree(self, file):
         """Creates a binary search tree of the words in given file"""
         with open(file) as f:
@@ -40,13 +38,12 @@ class JumbleSolver():
                 results.append(solved)
         return tuple(results)
 
-    @time_it
     def new_words(self, words):
         """Replace the set of scrambled words and solve them"""
         self.solutions = [self.solve_word(word) for word in words]
 
 
-if __name__ == '__main__':
+def main():
     solver = JumbleSolver(['gyrint', 'drivet', 'snamea',
                            'ceedit', 'sowdah', 'elchek'])
     print(solver.solutions)
@@ -63,3 +60,7 @@ if __name__ == '__main__':
     solver.new_words(['pryat', 'sogeo', 'rothex', 'areeta'])
     print(solver.solutions)
     print(solver)
+
+
+if __name__ == '__main__':
+    cProfile.run('main()')
