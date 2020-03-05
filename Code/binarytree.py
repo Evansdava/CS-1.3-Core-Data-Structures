@@ -115,7 +115,7 @@ class BinarySearchTree(object):
         elif type(self.root.data) != type(item):
             raise TypeError("Mixed type tree not supported")
         # Find the parent node of where the given item should be inserted
-        parent = self._find_parent_node_recursive(item, self.root)
+        parent = self._find_parent_node_iterative(item)
         # Check if the given item should be inserted left of parent node
         if item < parent.data:
             # Create a new node and set the parent's left child
